@@ -1,0 +1,16 @@
+name: daily
+on:
+  schedule:
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    uses: wangmm001/feedcache/.github/workflows/reusable-snapshot.yml@main
+    with:
+      source: cloudflare-radar
+    secrets:
+      CLOUDFLARE_RADAR_API_TOKEN: ${{ secrets.CLOUDFLARE_RADAR_API_TOKEN }}
